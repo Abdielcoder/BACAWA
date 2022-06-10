@@ -1,0 +1,37 @@
+{
+  "name": "back-car",
+  "version": "1.0.0",
+  "description": "back car wash",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedSkullCoder/BACAWA.git"
+  },
+  "author": "Red Skull Coder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedSkullCoder/BACAWA/issues"
+  },
+  "homepage": "https://github.com/RedSkullCoder/BACAWA#readme",
+  "dependencies": {
+    "@google-cloud/storage": "^5.18.2",
+    "bluebird": "^3.7.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.3",
+    "firebase-admin": "^10.0.2",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mercadopago": "^1.5.12",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pg-promise": "^10.11.1",
+    "socket.io": "^2.4.1"
+  }
+}

@@ -1,0 +1,14 @@
+passport
+bluebird
+express
+http
+morgan
+cors
+passport-jwt
+jsonwebtoken
+firebase-admin
+ @google-cloud/storage
+ multer
+ passport
+pg-promise
+socket.io
