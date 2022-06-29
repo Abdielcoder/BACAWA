@@ -14,7 +14,7 @@ Order.findByStatus = (status) => {
         O.id,
         O.id_client,
         O.id_address,
-        O.idDelivery,
+        O.id_delivery,
         O.status,
         O.timestamp,
         JSON_AGG(
@@ -57,7 +57,7 @@ Order.findByStatus = (status) => {
 	LEFT JOIN
 		users AS U2
 	ON
-		O.idDelivery = U2.id
+		O.id_delivery = U2.id
     INNER JOIN
         address AS A
     ON
@@ -80,14 +80,14 @@ Order.findByStatus = (status) => {
 
 }
 
-Order.findByDeliveryAndStatus = (idDelivery, status) => {
+Order.findByDeliveryAndStatus = (id_delivery, status) => {
 
     const sql = `
     SELECT 
         O.id,
         O.id_client,
         O.id_address,
-        O.idDelivery,
+        O.id_delivery,
         O.status,
         O.timestamp,
         JSON_AGG(
@@ -132,7 +132,7 @@ Order.findByDeliveryAndStatus = (idDelivery, status) => {
 	LEFT JOIN
 		users AS U2
 	ON
-		O.idDelivery = U2.id
+		O.id_delivery = U2.id
     INNER JOIN
         address AS A
     ON
@@ -146,12 +146,12 @@ Order.findByDeliveryAndStatus = (idDelivery, status) => {
     ON
         P.id = OHP.id_product
     WHERE
-        O.idDelivery = $1 AND status = $2 
+        O.id_delivery = $1 AND status = $2 
     GROUP BY
         O.id, U.id, A.id, U2.id
     `;
 
-    return db.manyOrNone(sql, [idDelivery, status]);
+    return db.manyOrNone(sql, [id_delivery, status]);
 
 }
 
@@ -162,7 +162,7 @@ Order.findByClientAndStatus = (id_client, status) => {
         O.id,
         O.id_client,
         O.id_address,
-        O.idDelivery,
+        O.id_delivery,
         O.status,
         O.timestamp,
         O.lat,
@@ -207,7 +207,7 @@ Order.findByClientAndStatus = (id_client, status) => {
 	LEFT JOIN
 		users AS U2
 	ON
-		O.idDelivery = U2.id
+		O.id_delivery = U2.id
     INNER JOIN
         address AS A
     ON
@@ -235,7 +235,7 @@ Order.create = (order) => {
     INSERT INTO
         orders(
             id_client,
-	    idDelivery,
+	    id_delivery,
             id_address,
             status,
             payment,
@@ -248,7 +248,7 @@ Order.create = (order) => {
 
     return db.oneOrNone(sql, [
         order.id_client,
-	order.idDelivery,
+	order.id_delivey,
         order.id_address,
         order.status,
         order.payment,
@@ -265,7 +265,7 @@ Order.update = (order) => {
     SET
         id_client = $2,
         id_address = $3,
-        idDelivery = $4,
+        id_delivery = $4,
         status = $5,
         updated_at = $6
     WHERE
@@ -275,7 +275,7 @@ Order.update = (order) => {
         order.id,
         order.id_client,
         order.id_address,
-        order.idDelivery,
+        order.id_delivery,
         order.status,
         new Date()
     ]);
@@ -306,21 +306,18 @@ Order.updateLatLng = (order) => {
     UPDATE
         orders
     SET
-        
         lat = $2,
-        lng = $3,
-	iddelivery = $4,
-	id_delivery = $5
+        lng = $3
     WHERE
         id = $1
     `;
     return db.none(sql, [
         order.id,
         order.lat,
-        order.lng,
-	order.iddelivery,
-	order.id_delivery
+        order.lng
     ]);
 }
 
 module.exports = Order;
+
+

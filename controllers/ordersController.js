@@ -27,10 +27,10 @@ module.exports = {
     async findByDeliveryAndStatus(req, res, next) {
 
         try {
-            const idDelivery = req.params.idDelivery;
+            const id_delivery = req.params.id_delivery;
             const status = req.params.status;
 
-            const data = await Order.findByDeliveryAndStatus(idDelivery, status);
+            const data = await Order.findByDeliveryAndStatus(id_delivery, status);
             console.log(`Status delivery ${JSON.stringify(data)}`);
             return res.status(201).json(data);
         } 
