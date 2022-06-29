@@ -29,8 +29,11 @@ module.exports = (app, upload) => {
   app.delete('/api/users/delete/:id', UsersController.deleteUser)
 //UPDATE USE BACK
   app.put('/api/users/update/data', UsersController.updateUserData)
+//FIND ROLE
 
-
+ app.get('/api/users/findByRole/:id', UsersController.findByRole);
+//FIND BY NAME
+app.get('/api/users/findByName/:id', UsersController.findByName);
 
 
 }

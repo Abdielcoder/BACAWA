@@ -327,6 +327,35 @@ User.updateUserData = (id, email, name, lastname , phone) => {
 }      
 
 
+User.findByRole = (id) => {
+    const sql = `
+    SELECT
+    
+    id_rol
+    
+    FROM 
+        user_has_roles 
+	WHERE id_user = $1 
+    
+    `
+    return db.oneOrNone(sql, id);
+}
+
+User.findByName = (id) => {
+    const sql = `
+    SELECT
+    
+    name, lastname
+    
+    FROM 
+        users 
+	WHERE id = $1 
+    
+    `
+    return db.oneOrNone(sql, id);
+}
+
+
 
 
 
