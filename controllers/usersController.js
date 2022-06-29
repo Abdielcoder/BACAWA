@@ -323,8 +323,55 @@ module.exports = {
                 error: error
             });
         }
-    }
+    },
 
+async deleteUser(req, res, next) {
+        try {
+            
+            let user = req.params.id;
+           
+            await User.deleteUser(user);
+            
+
+            return res.status(201).json({
+                success: true,
+                message: 'El usuario se elimino correctamente',
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error ${error}`);    
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error al eliminar al usuario',
+                error: error
+            });
+        }
+    },
+
+	 async updateUserData(req, res, next) {
+        try {
+            
+            const body = req.body;
+            console.log('Datos enviados del usuario: ', body);
+
+            await User.updateUserData(body.id, body.email, body.name, body.lastname, body.phone);
+
+            return res.status(201).json({
+                success: true,
+                message: 'La informacion  se ha almacenado correctamente'
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con la actualizacion de datos del usuario',
+                error: error
+            });
+        }
+    },
 
 
 };

@@ -24,4 +24,13 @@ module.exports = (app, upload) => {
   //
   app.put('/api/users/updateNotificationToken', UsersController.updateNotificationToken)
 
+//DELETE USER
+	
+  app.delete('/api/users/delete/:id', UsersController.deleteUser)
+//UPDATE USE BACK
+  app.put('/api/users/update/data', UsersController.updateUserData)
+
+
+
+
 }

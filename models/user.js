@@ -296,4 +296,40 @@ User.isPasswordMatched = (userPassword, hash) => {
     return false;
 }
 
+
+User.deleteUser = (id) => {
+    const sql = `DELETE FROM users WHERE id  = $1`;
+    const vali = [id];
+//id  = ${id};
+    return db.manyOrNone(sql,vali,id);
+}
+
+User.updateUserData = (id, email, name, lastname , phone) => {
+    const sql = `
+    UPDATE
+        users
+    SET                                           
+        email = $2,
+	name = $3,
+	lastname = $4,
+	phone = $5
+    WHERE                           
+        id = $1     
+    `;
+                 
+    return db.none(sql, [
+	    id,
+	    email,
+	    name,
+	    lastname,
+	    phone
+    ]);                    
+}      
+
+
+
+
+
+
+
 module.exports = User;
