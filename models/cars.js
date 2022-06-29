@@ -37,20 +37,9 @@ Cars.getAll = () => {
 
     const sql = `
         SELECT
-        id,
-        id_user,
-        marca,
-        modelo,
-        year_car,
-        placa,
-        color,
-        image_car,
-        created_at,
-        updated_at,
-        FROM
+        *
+	FROM
             cars
-        ORDER BY
-            marca
     `;
 
     return db.manyOrNone(sql);

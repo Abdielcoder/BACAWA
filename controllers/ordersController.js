@@ -27,10 +27,10 @@ module.exports = {
     async findByDeliveryAndStatus(req, res, next) {
 
         try {
-            const id_delivery = req.params.id_delivery;
+            const idDelivery = req.params.idDelivery;
             const status = req.params.status;
 
-            const data = await Order.findByDeliveryAndStatus(id_delivery, status);
+            const data = await Order.findByDeliveryAndStatus(idDelivery, status);
             console.log(`Status delivery ${JSON.stringify(data)}`);
             return res.status(201).json(data);
         } 
@@ -69,7 +69,7 @@ module.exports = {
         try {
             
             let order = req.body;
-	    order.id_delivery = '2';
+	    //order.idDelivery = '2';
             order.status = 'DESPACHADO';
             order.payment = 'CARD';
             const data = await Order.create(order);
@@ -103,7 +103,7 @@ module.exports = {
         try {
             
             let order = req.body;
-	    order.id_delivery = '2';
+	   // order.idDelivery = '2'I;
             order.status = 'DESPACHADO';
             order.payment = 'CASH';
             const data = await Order.create(order);
