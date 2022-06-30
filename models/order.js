@@ -318,6 +318,20 @@ Order.updateLatLng = (order) => {
     ]);
 }
 
+Order.totalCount = () => {
+    const sql = `
+    SELECT
+        count(*) as ventas, name(count(*)*120) FROM
+    
+    orders
+    
+    `
+
+    return db.manyOrNone(sql);
+}
+
+
+
 module.exports = Order;
 
 

@@ -344,7 +344,7 @@ User.findByRole = (id) => {
 User.findByName = () => {
     const sql = `
     SELECT
-   
+    cars.id, 
     name,
     lastname,
     cars.marca,
@@ -381,6 +381,54 @@ User.updateUserIdRol = (id_user, id_rol) => {
 	    id_rol,
     ]);                    
 } 
+
+User.addressAll = () => {
+    const sql = `
+   
+   SELECT
+    address.id, 
+    name,
+    lastname,
+    address.address,
+    address.lat,
+    address.lng,
+    address.created_at
+    
+
+    FROM
+    address
+	LEFT JOIN users ON
+     users.id = address.id_user
+
+
+    `
+
+    return db.manyOrNone(sql);
+}
+
+User.clientAll = () => {
+    const sql = `
+   
+SELECT 
+    user_has_roles.id_user, 
+    user_has_roles.id_rol,
+email,
+name,
+    lastname,
+    phone
+    
+
+    FROM
+    user_has_roles
+	LEFT JOIN users ON
+      users.id = user_has_roles.id_user and user_has_roles.id_rol = 1  
+      WHERE user_has_roles.id_rol < 2
+
+    `
+
+    return db.manyOrNone(sql);
+}
+
 
 
 
