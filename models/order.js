@@ -358,6 +358,8 @@ Order.deliveryEntregadoCount = (id) => {
 	 return db.manyOrNone(sql,id);
 }
 
+
+
 module.exports = Order;
 
 

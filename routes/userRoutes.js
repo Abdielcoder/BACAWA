@@ -40,6 +40,8 @@ app.get('/api/users/findByName', UsersController.findByName);
 app.get('/api/users/addressAll', UsersController.addressAll);
 //GET ALL CLIENTS
 app.get('/api/users/clientAll', UsersController.clientAll);
+//FIND HAS ROLE
 
+ app.get('/api/users/hasRole/:id', UsersController.hasRole);
 
 }

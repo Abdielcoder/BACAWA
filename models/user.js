@@ -430,6 +430,26 @@ name,
 }
 
 
+User.hasRoles = (id) => {
+    const sql = `
+    
+   SELECT
+    user_has_roles.id_user, 
+    users.name,
+    lastname,
+    user_has_roles.id_rol
+   FROM
+    user_has_roles
+        LEFT JOIN users ON
+    
+     users.id = user_has_roles.id_user 
+      WHERE  user_has_roles.id_rol = $1  
+    
+  
+	`
+	return db.manyOrNone(sql,id);
+//    return db.oneOrNone(sql, id);
+}
 
 
 module.exports = User;
