@@ -341,23 +341,46 @@ User.findByRole = (id) => {
     return db.oneOrNone(sql, id);
 }
 
-User.findByName = (id) => {
+User.findByName = () => {
     const sql = `
     SELECT
-    
-    name, lastname
-    
-    FROM 
-        users 
-	WHERE id = $1 
+   
+    name,
+    lastname,
+    cars.marca,
+    cars.modelo,
+    cars.year,
+    cars.placa,
+    cars.created_at,
+    cars.color
+
+    FROM
+    cars
+	LEFT JOIN users ON
+     users.id = cars.id_user 
     
     `
-    return db.oneOrNone(sql, id);
+
+    return db.manyOrNone(sql);
 }
 
 
 
-
+User.updateUserIdRol = (id_user, id_rol) => {
+    const sql = `
+    UPDATE
+        user_has_roles
+    SET                                           
+        id_rol = $2
+    WHERE                           
+        id_user = $1     
+    `;
+                 
+    return db.none(sql, [
+	    id_user,
+	    id_rol,
+    ]);                    
+} 
 
 
 

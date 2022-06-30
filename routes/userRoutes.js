@@ -33,7 +33,9 @@ module.exports = (app, upload) => {
 
  app.get('/api/users/findByRole/:id', UsersController.findByRole);
 //FIND BY NAME
-app.get('/api/users/findByName/:id', UsersController.findByName);
+app.get('/api/users/findByName', UsersController.findByName);
+//UPDATE ID ROL
+ app.put('/api/users/update/rol', UsersController.updateUserIdRol)
 
 
 }
