@@ -295,6 +295,55 @@ async updateCancelOrder(req, res, next) {
     },
 
 
+	async totalEntregado(req, res, next) {
+        try {
+            const data = await Order.totalEntregado();    
+            console.log(`Total: ${data}`);
+            return res.status(201).json(data);
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener los totales'
+            });
+        }
+    },
+
+	async deliveryEntregado(req, res, next) {
+        try {
+            const id = req.params.id;
+
+            const data = await Order.deliveryEntregado(id);    
+            console.log(`Data order: ${data}`);
+            return res.status(201).json(data);
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener el usuario por ID'
+            });
+        }
+    },
+
+async deliveryEntregadoCount(req, res, next) {
+        try {
+            const id = req.params.id;
+
+            const data = await Order.deliveryEntregadoCount(id);    
+            console.log(`Data order: ${data}`);
+            return res.status(201).json(data);
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener el usuario por ID'
+            });
+        }
+    },
+
 
 
 }

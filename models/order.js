@@ -323,14 +323,40 @@ Order.totalCount = () => {
     SELECT
         count(*) as ventas, name(count(*)*120) FROM
     
-    orders
+    orders WHERE status= 'ENTREGADO'
     
     `
 
     return db.manyOrNone(sql);
 }
 
+Order.totalEntregado = () => {
+    const sql = `
+   
+   SELECT * FROM orders WHERE status= 'ENTREGADO'
 
+    `
+
+    return db.manyOrNone(sql);
+}
+
+Order.deliveryEntregado = (id) => {
+    const sql = `
+   
+	SELECT * FROM orders WHERE status= 'ENTREGADO' AND id_delivery=$1
+
+    `
+	 return db.manyOrNone(sql,id);
+}
+
+Order.deliveryEntregadoCount = (id) => {
+    const sql = `
+   
+	SELECT count(*) as ventas, name(count(*)*120) FROM orders WHERE status= 'ENTREGADO' AND id_delivery =$1 
+
+    `
+	 return db.manyOrNone(sql,id);
+}
 
 module.exports = Order;
 

@@ -26,4 +26,15 @@ module.exports = (app) => {
    app.put('/api/orders/updateCancelWash',  OrdersController.updateCancelWash);
 //TOTAL COUNT
   app.get('/api/orders/totalCount', OrdersController.totalCount);
+//TOTAL ENTREGADO
+  app.get('/api/orders/totalEntregado', OrdersController.totalEntregado);
+//TOTAL ENTREGADO POR USUARIO
+ app.get('/api/orders/deliveryEntregado/:id', OrdersController.deliveryEntregado);
+
+
+//TOTAL COUNT ENTREGADO POR USUARIO
+ app.get('/api/orders/deliveryEntregadoCount/:id', OrdersController.deliveryEntregadoCount);
+
+
+
 }
